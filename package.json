@@ -1,0 +1,26 @@
+{
+  "name": "sone-template-cloudflare-worker",
+  "version": "1.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/sone-dao/sone-template-cloudflare-worker.git",
+  "author": "Lon Beshiri <lonbeshiri@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --verbose",
+    "dev": "wrangler dev src/index.ts",
+    "deploy": "wrangler publish src/index.ts"
+  },
+  "dependencies": {
+    "hono": "^3.2.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20221111.1",
+    "@types/jest": "^29.2.3",
+    "@types/node": "^20.2.1",
+    "esbuild": "^0.15.15",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^29.3.1",
+    "jest-environment-miniflare": "^2.11.0",
+    "wrangler": "^2.4.4"
+  }
+}
