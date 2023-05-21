@@ -170,3 +170,6 @@ dist
 
 # Rest
 .rest
+
+# Cloudflare development
+.dev.vars

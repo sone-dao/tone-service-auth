@@ -1,4 +1,5 @@
-name="sone-template-cloudflare-worker"
+name="tone-service-auth-beta"
 main="src/index.ts"
 
 compatibility_date = "2022-11-22"
+node_compat = true
