@@ -1,14 +1,14 @@
 name="tone-service-auth"
 main="src/index.ts"
-route="auth.tone.audio"
+route="auth.service.tone.audio"
 
 compatibility_date = "2022-11-22"
 node_compat = true
 
 [env.stage]
-route="stage.auth.tone.audio"
+route="stage.auth.service.tone.audio"
 vars = { ENVIRONMENT = "stage" }
 
 [env.beta]
-route="beta.auth.tone.audio"
+route="beta.auth.service.tone.audio"
 vars = { ENVIRONMENT = "beta" }

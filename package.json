@@ -13,7 +13,6 @@
   "dependencies": {
     "hono": "^3.2.0",
     "knex": "^2.4.2",
-    "postmark": "^3.0.18"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20221111.1",
