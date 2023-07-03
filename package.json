@@ -1,13 +1,14 @@
 {
-  "name": "@sone-dao/tone-service-auth-beta",
-  "version": "0.1.0",
+  "name": "@sone-dao/tone-service-auth",
+  "version": "0.1.1",
   "main": "src/index.ts",
-  "repository": "https://github.com/sone-dao/sone-template-cloudflare-worker.git",
+  "repository": "https://github.com/sone-dao/tone-service-auth.git",
   "license": "MIT",
   "scripts": {
     "test": "jest --verbose",
     "dev": "wrangler dev src/index.ts",
-    "deploy": "wrangler publish src/index.ts --minify"
+    "deploy:prod": "wrangler publish src/index.ts --minify",
+    "deploy:stage": "wrangler publish src/index.ts --minify --env stage"
   },
   "dependencies": {
     "hono": "^3.2.0",
