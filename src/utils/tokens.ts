@@ -1,10 +1,5 @@
 import { Jwt } from 'hono/utils/jwt'
 
-declare global {
-  const ACCESS_TOKEN_SECRET: string
-  const SESSION_TOKEN_SECRET: string
-}
-
 export async function genAccessToken(userData: any, secret: string) {
   if (!secret) return false
 

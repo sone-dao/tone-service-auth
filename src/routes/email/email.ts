@@ -5,19 +5,17 @@ import generateNonce from './generateNonce'
 const router = new Hono()
 
 router.get('/', async (c) => {
-  const body: any = await c.req.json()
-  const { email } = body
+  const { email } = c.req.query()
 
-  const data = await generateNonce(c, email).catch((error) => error)
-  return c.json(data)
+  const data: any = await generateNonce(c, email).catch((error) => error)
+  return c.json(data, data.status)
 })
 
-router.post('/', async (c) => {
-  const body: any = await c.req.json()
-  const { email, nonce } = body
+router.get('/login', async (c) => {
+  const { email, nonce } = c.req.query()
 
-  const data = await authEmail(c, email, nonce).catch((error) => error)
-  return c.json(data)
+  const data: any = await authEmail(c, email, nonce).catch((error) => error)
+  return c.json(data, data.status)
 })
 
 export default router
