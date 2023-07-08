@@ -1,5 +1,5 @@
+import { infraCheck } from '@sone-dao/tone-middleware'
 import { Hono } from 'hono'
-import infraCheck from './middleware/infraCheck'
 import emailRouter from './routes/email/email'
 import logoutRouter from './routes/logout/logout'
 import tokenRouter from './routes/token/token'

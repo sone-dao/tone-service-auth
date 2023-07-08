@@ -11,9 +11,10 @@
     "deploy:stage": "wrangler deploy src/index.ts --minify --env stage"
   },
   "dependencies": {
+    "@sone-dao/tone-middleware": "^0.2.4",
     "@supabase/supabase-js": "^2.26.0",
     "@types/uuid": "^9.0.2",
-    "hono": "^3.2.0",
+    "hono": "^3.2.7",
     "knex": "^2.4.2",
     "pg": "^8.11.1",
     "uuid": "^9.0.0"

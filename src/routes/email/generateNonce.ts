@@ -4,24 +4,34 @@ import { v4 as uuidv4 } from 'uuid'
 import { sendMail } from '../../utils/email'
 
 export default async function generateNonce(c: Context, email: string = '') {
-  const supabase = createClient(c.env.SUPABASE_URL, c.env.SUPABASE_KEY)
+  const sb = createClient(c.env.SUPABASE_URL, c.env.SUPABASE_KEY)
 
   return await new Promise(async (resolve, reject) => {
-    const { data: users, error: usersSqlError } = await supabase
+    const { data: user, error: usersSqlError } = await sb
       .from('tone_users')
       .select('*')
+      .eq('email', email)
+      .single()
 
     if (usersSqlError)
       reject({ ok: false, message: 'DATABASE_ERROR', error: usersSqlError })
 
-    if (!users.length)
-      reject({ ok: false, message: 'NO_USER_FOUND', error: usersSqlError })
-
     const nonce = uuidv4() || ''
 
-    const { error: nonceSqlError } = await supabase
+    //TODO: Clean-up old/expired attempts here
+
+    const attempt = {
+      createdOn: Date.now(),
+      nonce,
+    }
+
+    const loginAttempts = user.loginAttempts || []
+
+    const updatedAttempts = [...loginAttempts, attempt]
+
+    const { error: nonceSqlError } = await sb
       .from('tone_users')
-      .update({ nonce })
+      .update({ loginAttempts: updatedAttempts })
       .eq('email', email)
 
     if (nonceSqlError)
@@ -40,7 +50,7 @@ export default async function generateNonce(c: Context, email: string = '') {
         text: nonce,
       },
     })
-      .then((response) => resolve({ ok: true, response }))
-      .catch((error) => reject({ ok: false, error }))
+      .then((response) => resolve({ status: 200, ok: true, response }))
+      .catch((error) => reject({ status: 500, ok: false, error }))
   })
 }

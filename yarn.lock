@@ -941,6 +941,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@sone-dao/tone-middleware@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@sone-dao/tone-middleware/-/tone-middleware-0.2.4.tgz#d5115402364eb07d73b54384ff3ee1a4dd3db29a"
+  integrity sha512-XxHBwNOalsAfJHdw2C3vl13C6Js3RrVRBdY7tFIbxoY/qNyCe+BadnJWBZO3GR7OtFbbkaFFN/qtKLDr22xPQg==
+
 "@supabase/functions-js@^2.1.0":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@supabase/functions-js/-/functions-js-2.1.2.tgz#340a8d3845ef2014338b13a6d33cfa90eb745b14"
@@ -2376,10 +2381,10 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hono@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.npmjs.org/hono/-/hono-3.2.0.tgz"
-  integrity sha512-dsPameDZC+VYainhDxUnuYRFUytpLBN9CF1QjrtPx7AtlOaNLMKc5pKsZF1dnPmGal/QaM9YDAEnzZLUJ1ugsA==
+hono@^3.2.7:
+  version "3.2.7"
+  resolved "https://registry.yarnpkg.com/hono/-/hono-3.2.7.tgz#8a5ba1a0d6d0cbe8df7bc134c7d10c3dbe1f901b"
+  integrity sha512-7YCF9t4oMF3L3ghvcmlEBx2hoC9VyBBLuVrPZiOkU7PtFBrnQtkFEnYCRcPKCJiMoXHX3bDhU9R3HQbw+WnQJg==
 
 html-escaper@^2.0.0:
   version "2.0.2"

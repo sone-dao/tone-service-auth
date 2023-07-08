@@ -16,11 +16,13 @@ export default async function authEmail(
       .eq('email', email)
       .single()
 
-    if (userSqlError || !user.nonce)
+    if (userSqlError)
       reject({ ok: false, message: 'DATABASE_ERROR', error: userSqlError })
 
-    if (user.nonce !== nonce)
-      reject({ status: 500, ok: false, message: 'INVALID_NONCE' })
+    const nonces = user.loginAttempts.map((attempt: any) => attempt.nonce)
+
+    !nonces.includes(nonce) &&
+      reject({ status: 401, ok: false, message: 'INVALID_NONCE' })
 
     const tokenPayload = { userId: user.userId, roles: user.roles }
 
@@ -41,9 +43,18 @@ export default async function authEmail(
       { sessionToken, createdOn: Date.now() },
     ]
 
+    const loginAttempts = user.loginAttempts || []
+
+    const updatedAttempts = loginAttempts
+      .map((attempt: any) => (attempt.nonce == nonce ? null : attempt))
+      .filter((x: any) => x)
+
     const { error: updateSessionsSqlError } = await sb
       .from('tone_users')
-      .update({ activeSessions: updatedSessions })
+      .update({
+        activeSessions: updatedSessions,
+        loginAttempts: updatedAttempts,
+      })
       .eq('userId', user.userId)
 
     if (updateSessionsSqlError)

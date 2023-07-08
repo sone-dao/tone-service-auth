@@ -27,7 +27,7 @@ export default async function logoutUser(c: Context, token: string) {
         error: sqlUserError,
       })
 
-    const { activeSessions } = user
+    const { activeSessions = [] } = user
 
     const sessionTokens = activeSessions.map(
       (session: any) => session.sessionToken
