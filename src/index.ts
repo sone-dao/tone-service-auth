@@ -6,7 +6,7 @@ import tokenRouter from './routes/token/token'
 
 const app = new Hono()
 
-app.use('*', async (c, next) => infraCheck(c, next))
+app.use('*', infraCheck)
 
 app.get('/', (c) => c.json({ ok: true, message: 'OK' }))
 

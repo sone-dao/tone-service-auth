@@ -5,7 +5,7 @@ import generateNonce from './generateNonce'
 const router = new Hono()
 
 router.get('/', async (c) => {
-  const { email } = c.req.query()
+  const { user: email } = c.req.query()
 
   const data: any = await generateNonce(c, email).catch((error) => error)
   return c.json(data, data.status)
